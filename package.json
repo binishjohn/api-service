@@ -1,0 +1,58 @@
+{
+  "name": "CB",
+  "version": "1.0.0",
+  "description": "C&B Store Structure",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Binish John",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "pre-git": "^3.17.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "es6": true,
+      "browser": true
+    },
+    "rules": {
+      "no-console": ["error", { "allow": ["error"] }],
+      "comma-dangle": ["error", "never"],
+      "no-var": ["error"],
+      "one-var": ["off"],
+      "indent": [2, 2],
+      "quotes": [2, "double", "avoid-escape"],
+      "arrow-body-style": ["error", "always"],
+      "function-paren-newline": ["error", "consistent"],
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
+      ]
+    }
+  },
+  "release": {
+    "analyzeCommits": "simple-commit-message"
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": "simple",
+      "pre-commit": ["npm run lint"],
+      "pre-push": [],
+      "post-commit": "git branch --list",
+      "post-checkout": "yarn install",
+      "post-merge": "yarn install"
+    }
+  }
+}
