@@ -4,13 +4,17 @@
   "description": "C&B Store Structure",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node application.js",
+    "lint": "node_modules/eslint/bin/eslint.js ./application/* application.js",
+    "commit": "commit-wizard"
   },
   "author": "Binish John",
   "dependencies": {
     "body-parser": "^1.16.0",
     "express": "^4.14.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "eslint": "^4.18.0",
@@ -25,14 +29,42 @@
       "browser": true
     },
     "rules": {
-      "no-console": ["error", { "allow": ["error"] }],
-      "comma-dangle": ["error", "never"],
-      "no-var": ["error"],
-      "one-var": ["off"],
-      "indent": [2, 2],
-      "quotes": [2, "double", "avoid-escape"],
-      "arrow-body-style": ["error", "always"],
-      "function-paren-newline": ["error", "consistent"],
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "error",
+            "info"
+          ]
+        }
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-var": [
+        "error"
+      ],
+      "one-var": [
+        "off"
+      ],
+      "indent": [
+        2,
+        2
+      ],
+      "quotes": [
+        2,
+        "double",
+        "avoid-escape"
+      ],
+      "arrow-body-style": [
+        "error",
+        "always"
+      ],
+      "function-paren-newline": [
+        "error",
+        "consistent"
+      ],
       "no-unused-expressions": [
         "error",
         {
@@ -48,7 +80,9 @@
   "config": {
     "pre-git": {
       "commit-msg": "simple",
-      "pre-commit": ["npm run lint"],
+      "pre-commit": [
+        "npm run lint"
+      ],
       "pre-push": [],
       "post-commit": "git branch --list",
       "post-checkout": "yarn install",

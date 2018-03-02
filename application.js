@@ -1,5 +1,5 @@
-"use strict";
-const server = require("./application");
+const server = require("./server");
 const config = require("./configuration");
+
 server.create(config);
 server.start();
