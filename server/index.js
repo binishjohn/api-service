@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const routes = require("./routes/routes.js");
+const morgan = require("morgan");
 
 class Server {
   constructor() {
@@ -12,6 +13,7 @@ class Server {
     this.server.set("hostname", configuration.hostname);
     this.server.set("jwt_token", "1234567890qwertyuiop");
     this.server.use(bodyParser.json());
+    this.server.use(morgan("combined"));
     routes.init(this.server);
   }
   start() {
