@@ -1,7 +1,10 @@
+const https = require("https");
+const fs = require("fs");
 const express = require("express");
 const bodyParser = require("body-parser");
 const routes = require("./routes/routes.js");
 const morgan = require("morgan");
+const helmet = require("helmet");
 
 class Server {
   constructor() {
@@ -14,14 +17,28 @@ class Server {
     this.server.set("jwt_token", "1234567890qwertyuiop");
     this.server.use(bodyParser.json());
     this.server.use(morgan("combined"));
+    this.server.use(helmet());
     routes.init(this.server);
   }
   start() {
     const hostname = this.server.get("hostname");
     const port = this.server.get("port");
-    this.server.listen(port, () => {
-      console.info(`API server listening on - http:// ${hostname}  :  ${port}`);
-    });
+    https
+      .createServer(
+        {
+          key: fs.readFileSync("./keys/server.key"),
+          cert: fs.readFileSync("./keys/server.crt"),
+          ca: fs.readFileSync("./keys/ca.crt"),
+          requestCert: true,
+          rejectUnauthorized: false
+        },
+        this.server
+      )
+      .listen(port, () => {
+        console.info(
+          `API server listening on - http:// ${hostname}  :  ${port}`
+        );
+      });
   }
 }
 const server = new Server();
