@@ -1,8 +1,6 @@
 const express = require("express");
-const locationCtrl = require("../../../controllers/apis/location");
-const storeCtrl = require("../../../controllers/apis/store");
+const LocationRoutes = require("../../../controllers/apis/location");
 
 const router = express.Router();
-router.use("/location", locationCtrl);
-router.use("/store", storeCtrl);
+router.use("/location", LocationRoutes);
 module.exports = router;

@@ -1,11 +1,15 @@
-const dsWebService = require("../../datasource/service");
+const dsWebService = require("../../datasources/service");
 
-class Store {
+class Location {
   constructor() {
     this.dsWenService = dsWebService;
   }
-  getStores() {
-    return this.dsWenService.Get("/location");
+  getLocation() {
+    return new Promise((resolve, reject) => {
+      this.name = "Location A";
+      resolve({ name: this.name });
+    });
+    // return this.dsWenService.Get("/location");
   }
 }
-module.exports = new Store();
+module.exports = new Location();

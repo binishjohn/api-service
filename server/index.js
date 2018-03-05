@@ -10,6 +10,7 @@ class Server {
     this.server.set("env", configuration.env);
     this.server.set("port", configuration.port);
     this.server.set("hostname", configuration.hostname);
+    this.server.set("jwt_token", "1234567890qwertyuiop");
     this.server.use(bodyParser.json());
     routes.init(this.server);
   }
